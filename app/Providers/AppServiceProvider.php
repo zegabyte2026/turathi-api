@@ -19,9 +19,6 @@ class AppServiceProvider extends ServiceProvider
             $baseUrl = 'https://' . request()->getHost();
             $this->app['config']->set('app.url', $baseUrl);
             $this->app['config']->set('filesystems.disks.public.url', $baseUrl . '/storage');
-            $this->app['config']->set('session.driver', 'cookie');
-            $this->app['config']->set('session.secure', true);
-            $this->app['config']->set('session.same_site', 'lax');
 
             URL::forceScheme('https');
             URL::forceRootUrl('https://' . request()->getHost());
