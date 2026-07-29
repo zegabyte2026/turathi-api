@@ -19,7 +19,9 @@ EXPOSE 8000
 
 RUN cp .env.example .env
 
-CMD php artisan key:generate --force && \
+CMD rm -rf public/storage && \
+    php artisan storage:link --force && \
+    php artisan key:generate --force && \
     php artisan migrate --force && \
     php artisan db:seed --force && \
     php artisan config:clear && \
