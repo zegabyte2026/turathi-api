@@ -63,6 +63,12 @@ class DatabaseSeeder extends Seeder
             'longitude' => -1.3150,
             'altitude' => 830,
             'is_published' => true,
+            'cover_image' => 'https://picsum.photos/seed/mechouar/800/600',
+            'images' => [
+                'https://picsum.photos/seed/mechouar1/800/600',
+                'https://picsum.photos/seed/mechouar2/800/600',
+                'https://picsum.photos/seed/mechouar3/800/600',
+            ],
         ]);
 
         $bardo = Site::create([
@@ -76,6 +82,12 @@ class DatabaseSeeder extends Seeder
             'latitude' => 36.7833,
             'longitude' => 3.0500,
             'is_published' => true,
+            'cover_image' => 'https://picsum.photos/seed/bardo/800/600',
+            'images' => [
+                'https://picsum.photos/seed/bardo1/800/600',
+                'https://picsum.photos/seed/bardo2/800/600',
+                'https://picsum.photos/seed/bardo3/800/600',
+            ],
         ]);
 
         $casbah = Site::create([
@@ -89,6 +101,12 @@ class DatabaseSeeder extends Seeder
             'latitude' => 36.7822,
             'longitude' => 3.0514,
             'is_published' => true,
+            'cover_image' => 'https://picsum.photos/seed/casbah/800/600',
+            'images' => [
+                'https://picsum.photos/seed/casbah1/800/600',
+                'https://picsum.photos/seed/casbah2/800/600',
+                'https://picsum.photos/seed/casbah3/800/600',
+            ],
         ]);
 
         $tipasa = Site::create([
@@ -102,6 +120,12 @@ class DatabaseSeeder extends Seeder
             'latitude' => 36.5897,
             'longitude' => 2.4475,
             'is_published' => true,
+            'cover_image' => 'https://picsum.photos/seed/tipasa/800/600',
+            'images' => [
+                'https://picsum.photos/seed/tipasa1/800/600',
+                'https://picsum.photos/seed/tipasa2/800/600',
+                'https://picsum.photos/seed/tipasa3/800/600',
+            ],
         ]);
 
         // --- Assign QR codes to sites (using explicit assignment, not fillable) ---
@@ -128,12 +152,14 @@ class DatabaseSeeder extends Seeder
                 'description' => ['ar' => 'مدخل القصر', 'fr' => "Entrée du palais", 'en' => 'Palace entrance'],
                 'latitude' => 34.8782,
                 'longitude' => -1.3151,
+                'images' => ['https://picsum.photos/seed/porte/800/600'],
             ],
             [
                 'title' => ['ar' => 'ساحة الشرف', 'fr' => "Cour d'honneur", 'en' => 'Courtyard of Honor'],
                 'description' => ['ar' => 'الساحة الرئيسية', 'fr' => 'La cour principale', 'en' => 'The main courtyard'],
                 'latitude' => 34.8783,
                 'longitude' => -1.3152,
+                'images' => ['https://picsum.photos/seed/cour/800/600'],
             ],
             [
                 'title' => ['ar' => 'قاعة العرش', 'fr' => 'Salle du Trône', 'en' => 'Throne Room'],
@@ -144,12 +170,14 @@ class DatabaseSeeder extends Seeder
                 ],
                 'latitude' => 34.8784,
                 'longitude' => -1.3153,
+                'images' => ['https://picsum.photos/seed/tronc/800/600'],
             ],
             [
                 'title' => ['ar' => 'الحدائق الأندلسية', 'fr' => 'Jardins andalous', 'en' => 'Andalusian Gardens'],
                 'description' => ['ar' => 'حدائق جميلة', 'fr' => 'Jardins magnifiques', 'en' => 'Beautiful gardens'],
                 'latitude' => 34.8785,
                 'longitude' => -1.3154,
+                'images' => ['https://picsum.photos/seed/jardins/800/600'],
             ],
         ];
 
