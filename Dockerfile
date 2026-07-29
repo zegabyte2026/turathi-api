@@ -4,7 +4,9 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     unzip \
     && docker-php-ext-install pdo_pgsql \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && echo "upload_max_filesize=64M" > /usr/local/etc/php/conf.d/upload.ini \
+    && echo "post_max_size=64M" >> /usr/local/etc/php/conf.d/upload.ini
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
