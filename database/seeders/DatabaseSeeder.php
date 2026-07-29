@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Endroit;
+use App\Models\Objet;
+use App\Models\PackVersion;
 use App\Models\QrCode;
 use App\Models\Site;
 use App\Models\User;
@@ -16,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         // Truncate seed tables to avoid duplicates on re-seed
         QrCode::query()->delete();
-        \App\Models\PackVersion::query()->delete();
+        PackVersion::query()->delete();
         Objet::query()->delete();
         Endroit::query()->delete();
         Site::query()->delete();
