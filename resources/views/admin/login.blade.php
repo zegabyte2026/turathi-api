@@ -144,14 +144,16 @@
 
     <script>
         document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
             var form = this;
-            grecaptcha.ready(function() {
-                grecaptcha.execute('{{ config('services.recaptcha.key') }}', {action: 'login'}).then(function(token) {
-                    document.getElementById('g-recaptcha-response').value = token;
-                    form.submit();
+            if (typeof grecaptcha !== 'undefined' && grecaptcha) {
+                e.preventDefault();
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('{{ config('services.recaptcha.key') }}', {action: 'login'}).then(function(token) {
+                        document.getElementById('g-recaptcha-response').value = token;
+                        form.submit();
+                    });
                 });
-            });
+            }
         });
     </script>
 </body>
