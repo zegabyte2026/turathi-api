@@ -52,9 +52,11 @@ class AdminController extends Controller
             'password' => 'required',
         ]);
 
-        $recaptchaResponse = $request->input('g-recaptcha-response');
-        if (!$recaptchaResponse) {
-            return back()->withErrors(['email' => 'Please complete the CAPTCHA.'])->withInput($request->only('email'));
+        if (app()->environment('local')) {
+            $recaptchaResponse = $request->input('g-recaptcha-response');
+            if (!$recaptchaResponse) {
+                return back()->withErrors(['email' => 'Please complete the CAPTCHA.'])->withInput($request->only('email'));
+            }
         }
 
         if (Auth::attempt($credentials)) {
