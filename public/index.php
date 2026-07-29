@@ -5,6 +5,13 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+if ((isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] !== 'https')) {
+    $baseUrl = getenv('RENDER_EXTERNAL_URL') ?: ('https://' . ($_SERVER['HTTP_HOST'] ?? 'localhost'));
+    $redirect = $baseUrl . $_SERVER['REQUEST_URI'];
+    header('Location: ' . $redirect, true, 301);
+    exit;
+}
+
 // Determine if the application is in maintenance mode...
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
