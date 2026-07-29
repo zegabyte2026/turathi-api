@@ -14,9 +14,11 @@ return new class extends Migration
             $table->json('description')->nullable()->after('name');
         });
 
-        DB::table('wilayas')->where('id', 1)->update(['name' => json_encode(['fr' => 'Tlemcen', 'ar' => 'تلمسان', 'en' => 'Tlemcen'])]);
-        DB::table('wilayas')->where('id', 2)->update(['name' => json_encode(['fr' => 'Alger', 'ar' => 'الجزائر', 'en' => 'Algiers'])]);
-        DB::table('wilayas')->where('id', 3)->update(['name' => json_encode(['fr' => 'Tipasa', 'ar' => 'تيبازة', 'en' => 'Tipaza'])]);
+        if (DB::table('wilayas')->exists()) {
+            DB::table('wilayas')->where('id', 1)->update(['name' => json_encode(['fr' => 'Tlemcen', 'ar' => 'تلمسان', 'en' => 'Tlemcen'])]);
+            DB::table('wilayas')->where('id', 2)->update(['name' => json_encode(['fr' => 'Alger', 'ar' => 'الجزائر', 'en' => 'Algiers'])]);
+            DB::table('wilayas')->where('id', 3)->update(['name' => json_encode(['fr' => 'Tipasa', 'ar' => 'تيبازة', 'en' => 'Tipaza'])]);
+        }
     }
 
     public function down(): void

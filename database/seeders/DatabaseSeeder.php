@@ -35,9 +35,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // --- Wilayas ---
-        $tlemcen = Wilaya::create(['name' => 'Tlemcen']);
-        $alger = Wilaya::create(['name' => 'Alger']);
-        $tipasa = Wilaya::create(['name' => 'Tipasa']);
+        $tlemcen = Wilaya::create(['name' => ['fr' => 'Tlemcen', 'ar' => 'تلمسان', 'en' => 'Tlemcen']]);
+        $alger = Wilaya::create(['name' => ['fr' => 'Alger', 'ar' => 'الجزائر', 'en' => 'Algiers']]);
+        $tipasa = Wilaya::create(['name' => ['fr' => 'Tipasa', 'ar' => 'تيبازة', 'en' => 'Tipaza']]);
 
         // --- Sites ---
         $mechouar = Site::create([
