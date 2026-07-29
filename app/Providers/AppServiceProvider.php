@@ -15,21 +15,24 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        if (app()->environment('production')) {
+        $renderUrl = getenv('RENDER_EXTERNAL_URL');
+        if ($renderUrl) {
+            $this->app['config']->set('app.url', $renderUrl);
+            $this->app['config']->set('filesystems.disks.public.url', $renderUrl . '/storage');
+            URL::forceScheme('https');
+            URL::forceRootUrl($renderUrl);
+        } elseif (app()->environment('production')) {
             $baseUrl = 'https://' . request()->getHost();
             $this->app['config']->set('app.url', $baseUrl);
             $this->app['config']->set('filesystems.disks.public.url', $baseUrl . '/storage');
-
             URL::forceScheme('https');
-            URL::forceRootUrl('https://' . request()->getHost());
-
-            Request::setTrustedProxies(
-                ['*'],
-                Request::HEADER_X_FORWARDED_FOR |
-                Request::HEADER_X_FORWARDED_HOST |
-                Request::HEADER_X_FORWARDED_PORT |
-                Request::HEADER_X_FORWARDED_PROTO
-            );
+            URL::forceRootUrl($baseUrl);
         }
+
+        Request::setTrustedProxies(
+            ['*'],
+            Request::HEADER_X_FORWARDED_FOR |
+            Request::HEADER_X_FORWARDED_PROTO
+        );
     }
 }
