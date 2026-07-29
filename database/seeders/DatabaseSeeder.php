@@ -14,6 +14,15 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // Truncate seed tables to avoid duplicates on re-seed
+        QrCode::query()->delete();
+        \App\Models\PackVersion::query()->delete();
+        Objet::query()->delete();
+        Endroit::query()->delete();
+        Site::query()->delete();
+        Wilaya::query()->delete();
+        User::query()->delete();
+
         // --- Super Admin ---
         User::create([
             'name' => 'Karim Belkacem',
@@ -51,6 +60,7 @@ class DatabaseSeeder extends Seeder
             'latitude' => 34.8781,
             'longitude' => -1.3150,
             'altitude' => 830,
+            'is_published' => true,
         ]);
 
         $bardo = Site::create([
@@ -63,6 +73,7 @@ class DatabaseSeeder extends Seeder
             ],
             'latitude' => 36.7833,
             'longitude' => 3.0500,
+            'is_published' => true,
         ]);
 
         $casbah = Site::create([
@@ -75,6 +86,7 @@ class DatabaseSeeder extends Seeder
             ],
             'latitude' => 36.7822,
             'longitude' => 3.0514,
+            'is_published' => true,
         ]);
 
         $tipasa = Site::create([
@@ -87,6 +99,7 @@ class DatabaseSeeder extends Seeder
             ],
             'latitude' => 36.5897,
             'longitude' => 2.4475,
+            'is_published' => true,
         ]);
 
         // --- Assign QR codes to sites (using explicit assignment, not fillable) ---
