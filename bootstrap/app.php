@@ -13,8 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->validateCsrfTokens(except: [
+            'admin/login',
+        ]);
         $middleware->alias([
-            'admin' => \App\Http\Middleware\AdminOnly::class,
             'super_admin' => \App\Http\Middleware\SuperAdminOnly::class,
             'auth.web' => \App\Http\Middleware\AuthenticateWeb::class,
             'super_admin.web' => \App\Http\Middleware\SuperAdminWeb::class,
