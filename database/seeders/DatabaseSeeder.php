@@ -129,8 +129,6 @@ class DatabaseSeeder extends Seeder
                 ],
                 'latitude' => 34.8784,
                 'longitude' => -1.3153,
-                'audio_paths' => ['ar' => 'audio/salle-trone-ar.mp3', 'fr' => 'audio/salle-trone-fr.mp3'],
-                'images' => ['images/trone-1.webp', 'images/trone-2.webp', 'images/trone-3.webp'],
             ],
             [
                 'title' => ['ar' => 'الحدائق الأندلسية', 'fr' => 'Jardins andalous', 'en' => 'Andalusian Gardens'],
