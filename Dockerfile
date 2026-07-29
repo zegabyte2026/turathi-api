@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
     unzip \
-    && docker-php-ext-install pdo pdo_pgsql zip bcmath \
+    && docker-php-ext-install pdo pdo_pgsql pgsql zip bcmath \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -12,14 +12,13 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --no-interaction --prefer-dist --no-scripts
+RUN composer install --no-dev --no-interaction --prefer-dist
 
 COPY . .
 
-RUN composer dump-autoload --optimize \
-    && php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
+RUN php artisan config:cache || true \
+    && php artisan route:cache || true \
+    && php artisan view:cache || true
 
 EXPOSE 8000
 
